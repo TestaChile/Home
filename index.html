@@ -88,32 +88,33 @@
         .social-btn.main-page, .social-buttons a.main-page { background: #2C3E50; }
 
         .ar-button {
-            background: white !important;
-            color: #000 !important;
-            border: 2px solid #000 !important;
-            padding: 10px 24px !important;
-            border-radius: 0 !important;
-            font-size: 10px !important;
+            position: absolute !important;
+            top: 8px !important;
+            left: 8px !important;
+            background: rgba(74, 144, 226, 0.9) !important;
+            color: white !important;
+            border: none !important;
+            padding: 6px 10px !important;
+            border-radius: 20px !important;
+            font-size: 12px !important;
             font-family: Arial, sans-serif !important;
-            margin: 8px !important;
+            font-weight: bold !important;
+            margin: 0 !important;
             transition: all 0.3s !important;
             cursor: pointer !important;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
+            z-index: 10 !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+            backdrop-filter: blur(5px) !important;
         }
         .ar-button:hover {
-            background: #4A90E2 !important;
-            color: white !important;
-            border-color: #4A90E2 !important;
+            background: rgba(74, 144, 226, 1) !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
         }
         .ar-hint {
-            display: block;
-            font-size: 10px;
-            margin-top: 4px;
-            color: #666;
-            font-family: Arial, sans-serif;
-            text-transform: none;
-            letter-spacing: normal;
+            display: none !important;
         }
 
         /* FLEXBOX CATÁLOGO */
@@ -490,9 +491,11 @@
                 gap: 12px;
             }
             .ar-button {
-                font-size: 9px !important;
-                padding: 8px 16px !important;
-                margin: 6px !important;
+                font-size: 10px !important;
+                padding: 4px 8px !important;
+                top: 6px !important;
+                left: 6px !important;
+                border-radius: 15px !important;
             }
             .logo-container {
                 top: 12px;
@@ -595,9 +598,11 @@
                 gap: 10px;
             }
             .ar-button {
-                font-size: 8px !important;
-                padding: 6px 12px !important;
-                margin: 4px !important;
+                font-size: 9px !important;
+                padding: 3px 6px !important;
+                top: 5px !important;
+                left: 5px !important;
+                border-radius: 12px !important;
             }
             .ar-hint {
                 font-size: 8px;
@@ -655,8 +660,11 @@
                 overflow: visible !important;
             }
             .ar-button {
-                font-size: 7px !important;
-                padding: 5px 10px !important;
+                font-size: 8px !important;
+                padding: 3px 5px !important;
+                top: 4px !important;
+                left: 4px !important;
+                border-radius: 10px !important;
             }
             .social-btn, .social-buttons a {
                 font-size: 11px;
@@ -724,12 +732,12 @@
     // CONFIGURACIÓN - Aquí defines todos tus modelos
     const catalogConfig = {
         models: [
-        {
+            {
                 id: 'stand-qr-mediano',
                 title: 'MINI Stand QR Iching Restaurant',
                 subtitle: 'Fabricación: 17 de Julio del 2025',
                 src: '3dmodels/GLB_StandQR_MINI_ICHING.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -737,10 +745,21 @@
             },
             {
                 id: 'stand-qr-mediano',
+                title: 'Stand DUO QR - Datos de Transferencia KAVANA',
+                subtitle: 'Fabricación: 13 de Julio del 2025',
+                src: '3dmodels/GLB_StandQR_DUO_KAVANA.glb',
+                productLink: 'https://www.instagram.com/testa.cl/',
+                arType: 'horizontal',
+                arHint: '(Coloca en una superficie plana)',
+                rotationSpeed: '120deg',
+                dimensions: { alto: '14', ancho: '14', largo: '5' }
+            },
+            {
+                id: 'stand-qr-mediano',
                 title: 'Stand QR Acrílico Kine Postoperatoria',
                 subtitle: 'Fabricación: 20 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_KINEOPERATORIA.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -751,7 +770,7 @@
                 title: 'Mini Exhibidor Acrílico Cemas #2',
                 subtitle: 'Fabricación: 18 de Junio del 2025',
                 src: '3dmodels/GLB_Exhibidor_CEMAS_V2.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -762,7 +781,7 @@
                 title: 'Mini Exhibidor Acrílico Cemas #1',
                 subtitle: 'Fabricación: 18 de Junio del 2025',
                 src: '3dmodels/GLB_Exhibidor_CEMAS.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -773,7 +792,7 @@
                 title: 'Stand DUO QR Voir Chile BLANCO',
                 subtitle: 'Fabricación: 17 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_VOIR_02.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -784,7 +803,7 @@
                 title: 'Stand DUO QR Voir Chile NEGRO',
                 subtitle: 'Fabricación: 17 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_VOIR_01.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -795,7 +814,7 @@
                 title: 'Exhibidor QR Acrílico Flor Rústica',
                 subtitle: 'Fabricación: 12 de Junio del 2025',
                 src: '3dmodels/GLB_Exhibidor_FLORRUSTICA.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -806,7 +825,7 @@
                 title: 'Stand QR Acrílico BIOOX',
                 subtitle: 'Fabricación: 5 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_BIOOX.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -817,7 +836,7 @@
                 title: 'Stand DUO QR Baby Corner',
                 subtitle: 'Fabricación: 3 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_BABYCORNER.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -828,7 +847,7 @@
                 title: 'Stand QR Zeto Ink',
                 subtitle: 'Fabricación: 15 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_TATTTO_03.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -839,7 +858,7 @@
                 title: 'Stand QR Dahood Studio (Formulario)',
                 subtitle: 'Fabricación: 15 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_TATTTO_02.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -850,7 +869,7 @@
                 title: 'Stand QR Dahood Studio',
                 subtitle: 'Fabricación: 15 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_TATTTO_01.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -861,7 +880,7 @@
                 title: 'Stand QR El Club Versión Google',
                 subtitle: 'Fabricación: 11 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_CLUBBARBER_02.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -872,7 +891,7 @@
                 title: 'Stand QR El Club',
                 subtitle: 'Fabricación: 11 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_CLUBBARBER_01.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -883,7 +902,7 @@
                 title: 'Stand QR Terciado Dalfip',
                 subtitle: 'Fabricación: 6 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_ARMABLE_DALFIP.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -894,7 +913,7 @@
                 title: 'Stand DUO QR Acrílico SkinCare',
                 subtitle: 'Fabricación: 23 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_SKINCARE.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -905,7 +924,7 @@
                 title: 'Stand QR Acrílico Souvenir Chile',
                 subtitle: 'Fabricación: 23 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_SOUVENIR.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -916,7 +935,7 @@
                 title: 'Stand QR Acrílico Coello',
                 subtitle: 'Fabricación: 23 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_COELLOS.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -927,7 +946,7 @@
                 title: 'Stand QR Acrílico Santtorino Bistro',
                 subtitle: 'Fabricación: 16 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_SANTTORINO.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -938,7 +957,7 @@
                 title: 'Stand QR Acrílico Jairoz Cóctel & Drinks',
                 subtitle: 'Fabricación: 11 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_JAIROZ.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -949,7 +968,7 @@
                 title: 'Stand QR Acrílico GOGI',
                 subtitle: 'Fabricación: 8 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_GOGI.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -960,7 +979,7 @@
                 title: 'Escudo personalizado Black Snake',
                 subtitle: 'Fabricación: 4 de Abril del 2025',
                 src: '3dmodels/GLB_Letrero_BLACKSNAKE.glb',
-                productLink: 'https://www.google.cl',
+                productLink: 'https://www.instagram.com/testa.cl/',
                 arType: 'vertical',
                 arHint: '(Coloca en una pared)',
                 rotationSpeed: '90deg',
@@ -1067,8 +1086,7 @@
                     xr-environment
                 >
                     <button slot="ar-button" class="ar-button">
-                        VER EN REALIDAD AUMENTADA
-                        <span class="ar-hint">${model.arHint}</span>
+                        AR
                     </button>
                 </model-viewer>
                 <h3 class="model-title">${model.title}</h3>
