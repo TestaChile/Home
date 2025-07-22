@@ -289,58 +289,247 @@
         }
 
         /* RESPONSIVE */
+        /* Tablets y pantallas medianas */
         @media (max-width: 1023px) {
+            body {
+                padding: 15px 10px;
+            }
+            h1 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+            .description {
+                font-size: 15px;
+                margin-bottom: 20px;
+                padding: 0 10px;
+            }
             .catalog-flex {
                 flex-direction: column;
-                gap: 0;
+                gap: 15px;
+                padding: 15px 5px;
             }
             .catalog-column {
                 flex-direction: row;
-                gap: 20px;
+                gap: 15px;
                 min-width: 0;
                 width: 100%;
                 justify-content: center;
+                flex-wrap: wrap;
             }
             .catalog-column > .model-card {
-                flex: 1 1 0;
-                min-width: 250px;
+                flex: 1 1 300px;
+                max-width: 350px;
+                min-width: 280px;
+            }
+            .logo-img {
+                width: 50px;
             }
         }
+
+        /* Dispositivos móviles grandes */
         @media (max-width: 767px) {
+            body {
+                padding: 10px 8px;
+            }
+            h1 {
+                font-size: 20px;
+                margin-bottom: 12px;
+                line-height: 1.2;
+            }
+            .description {
+                font-size: 14px;
+                margin-bottom: 18px;
+                padding: 0 8px;
+                line-height: 1.4;
+            }
             .social-buttons {
                 overflow-x: auto;
                 justify-content: flex-start;
                 -webkit-overflow-scrolling: touch;
-                padding-bottom: 15px;
+                padding: 0 8px 15px 8px;
+                gap: 10px;
+            }
+            .social-btn, .social-buttons a {
+                min-width: 120px;
+                font-size: 13px;
+                padding: 10px 15px;
+                flex-shrink: 0;
             }
             .catalog-flex {
                 flex-direction: column;
-                gap: 0;
+                gap: 15px;
+                padding: 15px 8px;
             }
             .catalog-column {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
                 min-width: 0;
                 width: 100%;
             }
-        }
-        @media (max-width: 479px) {
-            .catalog-flex {
-                flex-direction: column;
-            }
-            .catalog-column {
-                flex-direction: column;
-                gap: 20px;
-                min-width: 0;
-                width: 100%;
+            .model-card {
+                min-height: 320px;
+                padding: 12px;
+                margin: 0 auto;
+                max-width: 400px;
             }
             .model-card model-viewer {
-                height: 220px;
+                height: 230px;
+            }
+            .model-title {
+                font-size: 16px;
+                margin: 8px 0 4px;
+            }
+            .model-subtitle {
+                font-size: 11px;
+                margin: 2px 0 8px;
+            }
+            .dimensions-block {
+                padding: 5px;
+                margin-bottom: 10px;
+            }
+            .dimensions-title {
+                font-size: 13px;
+            }
+            .dimensions-labels {
+                font-size: 11px;
+                gap: 12px;
+            }
+            .dimensions-values {
+                font-size: 13px;
+                gap: 12px;
+            }
+            .ar-button {
+                font-size: 9px !important;
+                padding: 8px 16px !important;
+                margin: 6px !important;
+            }
+            .logo-container {
+                top: 12px;
+                left: 12px;
+            }
+            .logo-img {
+                width: 45px;
+            }
+            .footer {
+                font-size: 9px;
+                margin: 25px auto 10px;
+                padding: 0 10px;
+            }
+        }
+
+        /* Dispositivos móviles pequeños */
+        @media (max-width: 479px) {
+            body {
+                padding: 8px 5px;
+            }
+            h1 {
+                font-size: 18px;
+                margin-bottom: 10px;
+                padding: 0 5px;
+            }
+            .description {
+                font-size: 13px;
+                margin-bottom: 15px;
+                padding: 0 5px;
+            }
+            .social-buttons {
+                padding: 0 5px 12px 5px;
+                gap: 8px;
             }
             .social-btn, .social-buttons a {
                 min-width: 100px;
-                font-size: 14px;
+                font-size: 12px;
                 padding: 8px 12px;
+                flex: 1;
+            }
+            .catalog-flex {
+                flex-direction: column;
+                gap: 12px;
+                padding: 12px 5px;
+            }
+            .catalog-column {
+                flex-direction: column;
+                gap: 12px;
+                min-width: 0;
+                width: 100%;
+            }
+            .model-card {
+                min-height: 300px;
+                padding: 10px;
+                margin: 0;
+                max-width: 100%;
+            }
+            .model-card model-viewer {
+                height: 200px;
+            }
+            .model-title {
+                font-size: 15px;
+                margin: 6px 0 3px;
+                line-height: 1.2;
+            }
+            .model-subtitle {
+                font-size: 10px;
+                margin: 2px 0 6px;
+            }
+            .dimensions-block {
+                padding: 4px;
+                margin-bottom: 8px;
+            }
+            .dimensions-title {
+                font-size: 12px;
+            }
+            .dimensions-labels {
+                font-size: 10px;
+                gap: 10px;
+            }
+            .dimensions-values {
+                font-size: 12px;
+                gap: 10px;
+            }
+            .ar-button {
+                font-size: 8px !important;
+                padding: 6px 12px !important;
+                margin: 4px !important;
+            }
+            .ar-hint {
+                font-size: 8px;
+                margin-top: 2px;
+            }
+            .product-link {
+                font-size: 11px;
+                margin: 8px auto 0 auto;
+            }
+            .logo-container {
+                top: 8px;
+                left: 8px;
+            }
+            .logo-img {
+                width: 40px;
+            }
+            .footer {
+                font-size: 8px;
+                margin: 20px auto 8px;
+                padding: 0 8px;
+                line-height: 1.3;
+            }
+        }
+
+        /* Dispositivos muy pequeños */
+        @media (max-width: 320px) {
+            .model-card model-viewer {
+                height: 180px;
+            }
+            .model-title {
+                font-size: 14px;
+            }
+            .ar-button {
+                font-size: 7px !important;
+                padding: 5px 10px !important;
+            }
+            .social-btn, .social-buttons a {
+                font-size: 11px;
+                padding: 6px 8px;
+                min-width: 80px;
             }
         }
     </style>
@@ -359,7 +548,7 @@
         <i class="fas fa-cube"></i>Explora nuestro <strong>Catálogo 3D</strong> interactivo.<br>
         <i class="fas fa-eye"></i>Descubre trabajos realizados para nuestros clientes.<br>
         <i class="fas fa-mouse-pointer"></i>Pasa el mouse sobre cada modelo para más información.<br><br>
-        <i class="fas fa-cogs icon-highlight"></i>Productos <strong>PERSONALIZADOS</strong> y <strong>A MEDIDA</strong>.<br>
+        <i class="fas fa-cogs icon-highlight"></i>Productos <strong>PERSONALIZADOS</strong> y <strong>A LA MEDIDA</strong>.<br>
         <i class="fas fa-shopping-cart icon-success"></i>Disponibles al detalle y por mayor. Contamos con <strong>boleta y factura</strong>.<br>
         <i class="fas fa-mobile-alt"></i><strong>Realidad Aumentada</strong> desde dispositivos móviles. 
     </div>
@@ -389,12 +578,23 @@
     // CONFIGURACIÓN - Aquí defines todos tus modelos
     const catalogConfig = {
         models: [
+        {
+                id: 'stand-qr-mediano',
+                title: 'MINI Stand QR Iching Restaurant',
+                subtitle: 'Fabricación: 17 de Julio del 2025',
+                src: '3dmodels/GLB_StandQR_MINI_ICHING.glb',
+                productLink: 'https://www.google.cl',
+                arType: 'horizontal',
+                arHint: '(Coloca en una superficie plana)',
+                rotationSpeed: '120deg',
+                dimensions: { alto: '9', ancho: '6', largo: '5' }
+            },
             {
                 id: 'stand-qr-mediano',
                 title: 'Stand QR Acrílico Kine Postoperatoria',
-                subtitle: 'Fabricación: 18 de Junio del 2025',
+                subtitle: 'Fabricación: 20 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_KINEOPERATORIA.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -405,7 +605,7 @@
                 title: 'Mini Exhibidor Acrílico Cemas #2',
                 subtitle: 'Fabricación: 18 de Junio del 2025',
                 src: '3dmodels/GLB_Exhibidor_CEMAS_V2.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -416,7 +616,7 @@
                 title: 'Mini Exhibidor Acrílico Cemas #1',
                 subtitle: 'Fabricación: 18 de Junio del 2025',
                 src: '3dmodels/GLB_Exhibidor_CEMAS.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -427,7 +627,7 @@
                 title: 'Stand DUO QR Voir Chile BLANCO',
                 subtitle: 'Fabricación: 17 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_VOIR_02.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -438,7 +638,7 @@
                 title: 'Stand DUO QR Voir Chile NEGRO',
                 subtitle: 'Fabricación: 17 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_VOIR_01.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -449,7 +649,7 @@
                 title: 'Exhibidor QR Acrílico Flor Rústica',
                 subtitle: 'Fabricación: 12 de Junio del 2025',
                 src: '3dmodels/GLB_Exhibidor_FLORRUSTICA.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -457,10 +657,10 @@
             },
             {
                 id: 'stand-qr-mediano',
-                title: 'Exhibidor QR Acrílico BIOOX',
+                title: 'Stand QR Acrílico BIOOX',
                 subtitle: 'Fabricación: 5 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_BIOOX.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -471,7 +671,7 @@
                 title: 'Stand DUO QR Baby Corner',
                 subtitle: 'Fabricación: 3 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_BABYCORNER.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '120deg',
@@ -482,7 +682,7 @@
                 title: 'Stand QR Zeto Ink',
                 subtitle: 'Fabricación: 15 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_TATTTO_03.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -493,7 +693,7 @@
                 title: 'Stand QR Dahood Studio (Formulario)',
                 subtitle: 'Fabricación: 15 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_TATTTO_02.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -504,7 +704,7 @@
                 title: 'Stand QR Dahood Studio',
                 subtitle: 'Fabricación: 15 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_TATTTO_01.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -515,7 +715,7 @@
                 title: 'Stand QR El Club Versión Google',
                 subtitle: 'Fabricación: 11 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_CLUBBARBER_02.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -526,7 +726,7 @@
                 title: 'Stand QR El Club',
                 subtitle: 'Fabricación: 11 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_CLUBBARBER_01.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -537,7 +737,7 @@
                 title: 'Stand QR Terciado Dalfip',
                 subtitle: 'Fabricación: 6 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_ARMABLE_DALFIP.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -548,7 +748,7 @@
                 title: 'Stand DUO QR Acrílico SkinCare',
                 subtitle: 'Fabricación: 23 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_SKINCARE.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -559,7 +759,7 @@
                 title: 'Stand QR Acrílico Souvenir Chile',
                 subtitle: 'Fabricación: 23 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_SOUVENIR.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -570,7 +770,7 @@
                 title: 'Stand QR Acrílico Coello',
                 subtitle: 'Fabricación: 23 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_COELLOS.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -581,7 +781,7 @@
                 title: 'Stand QR Acrílico Santtorino Bistro',
                 subtitle: 'Fabricación: 16 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_SANTTORINO.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -592,7 +792,7 @@
                 title: 'Stand QR Acrílico Jairoz Cóctel & Drinks',
                 subtitle: 'Fabricación: 11 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_JAIROZ.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -603,7 +803,7 @@
                 title: 'Stand QR Acrílico GOGI',
                 subtitle: 'Fabricación: 8 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_GOGI.glb',
-                productLink: 'https://www.instagram.com/p/DMOefGJuNJJ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+                productLink: 'https://www.google.cl',
                 arType: 'horizontal',
                 arHint: '(Coloca en una superficie plana)',
                 rotationSpeed: '90deg',
@@ -614,7 +814,7 @@
                 title: 'Escudo personalizado Black Snake',
                 subtitle: 'Fabricación: 4 de Abril del 2025',
                 src: '3dmodels/GLB_Letrero_BLACKSNAKE.glb',
-                productLink: 'https://linktr.ee/testa.cl',
+                productLink: 'https://www.google.cl',
                 arType: 'vertical',
                 arHint: '(Coloca en una pared)',
                 rotationSpeed: '90deg',
@@ -623,27 +823,40 @@
         ]
     };
 
-    // Flexbox: columnas responsivas
+    // Flexbox: columnas responsivas mejoradas para móvil
     const getColumnCount = () => {
         if (window.innerWidth < 480) return 1;
+        if (window.innerWidth < 768) return 1;
         if (window.innerWidth < 900) return 2;
         if (window.innerWidth < 1200) return 3;
         return 4;
     };
 
-    // Scroll solo para las últimas cards de cada columna si se salen del viewport
+    // Mejorar el scroll para dispositivos móviles
     function scrollCardIntoViewIfLast(card) {
-        // Verificar si es la última card de su columna
+        // En móvil, solo hacer scroll si realmente es necesario
+        if (window.innerWidth < 768) {
+            const rect = card.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Solo hacer scroll si la card expandida se sale completamente del viewport
+            if (rect.bottom > windowHeight + 50) {
+                const scrollY = window.scrollY + rect.top - 100;
+                window.scrollTo({ top: scrollY, behavior: 'smooth' });
+            }
+            return;
+        }
+        
+        // Comportamiento original para desktop/tablet
         const column = card.parentElement;
         const cardsInColumn = Array.from(column.children);
         const isLastCard = cardsInColumn[cardsInColumn.length - 1] === card;
         
-        if (!isLastCard) return; // Solo procesar últimas cards
+        if (!isLastCard) return;
         
         const rect = card.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Solo hacer scroll si la card se sale por abajo del viewport
         if (rect.bottom + 40 > windowHeight) {
             const scrollY = window.scrollY + rect.top + (rect.height / 2) - (windowHeight / 2) + 20;
             window.scrollTo({ top: scrollY, behavior: 'smooth' });
@@ -718,48 +931,111 @@
             `;
 
             // Hover/Focus para expandir solo la card y desplazar la siguiente
-            card.addEventListener('mouseenter', () => {
-                card.classList.add('expanded');
-                setTimeout(() => scrollCardIntoViewIfLast(card), 200);
-            });
-            card.addEventListener('mouseleave', () => card.classList.remove('expanded'));
+            // Mejorar para dispositivos táctiles
+            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+            
+            if (isTouchDevice) {
+                // En dispositivos táctiles, usar tap para expandir/contraer
+                card.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    if (card.classList.contains('expanded')) {
+                        card.classList.remove('expanded');
+                    } else {
+                        // Contraer otras cards expandidas
+                        document.querySelectorAll('.model-card.expanded').forEach(otherCard => {
+                            if (otherCard !== card) otherCard.classList.remove('expanded');
+                        });
+                        card.classList.add('expanded');
+                        setTimeout(() => scrollCardIntoViewIfLast(card), 300);
+                    }
+                });
+            } else {
+                // Comportamiento original para desktop
+                card.addEventListener('mouseenter', () => {
+                    card.classList.add('expanded');
+                    setTimeout(() => scrollCardIntoViewIfLast(card), 200);
+                });
+                card.addEventListener('mouseleave', () => card.classList.remove('expanded'));
+            }
+            
             card.addEventListener('focusin', () => {
                 card.classList.add('expanded');
                 setTimeout(() => scrollCardIntoViewIfLast(card), 200);
             });
             card.addEventListener('focusout', () => card.classList.remove('expanded'));
 
-            // Autorrotación solo al pasar el mouse
+            // Autorrotación mejorada para móviles
             const viewer = card.querySelector('model-viewer');
-            viewer.addEventListener('mouseenter', () => {
-                if (viewer.loaded) {
-                    viewer.setAttribute('auto-rotate', '');
-                    viewer.setAttribute('rotation-per-second', '90deg');
-                    if (typeof viewer.jumpCameraToGoal === "function") {
-                        viewer.jumpCameraToGoal();
+            
+            if (isTouchDevice) {
+                // En móviles, rotar al tocar el modelo
+                viewer.addEventListener('touchstart', () => {
+                    if (viewer.loaded && !viewer.hasAttribute('auto-rotate')) {
+                        viewer.setAttribute('auto-rotate', '');
+                        viewer.setAttribute('rotation-per-second', '60deg');
                     }
-                }
-            });
-            viewer.addEventListener('mouseleave', () => {
-                viewer.removeAttribute('auto-rotate');
-                viewer.removeAttribute('rotation-per-second');
-                viewer.cameraOrbit = "45deg 60deg 2.5m";
-                if (typeof viewer.resetTurntableRotation === "function") {
-                    viewer.resetTurntableRotation();
-                }
-                viewer.setAttribute('camera-orbit', "45deg 60deg 2.5m");
-            });
+                });
+                
+                // Parar rotación después de 3 segundos
+                viewer.addEventListener('touchstart', () => {
+                    setTimeout(() => {
+                        viewer.removeAttribute('auto-rotate');
+                        viewer.removeAttribute('rotation-per-second');
+                    }, 3000);
+                });
+            } else {
+                // Comportamiento original para desktop
+                viewer.addEventListener('mouseenter', () => {
+                    if (viewer.loaded) {
+                        viewer.setAttribute('auto-rotate', '');
+                        viewer.setAttribute('rotation-per-second', '90deg');
+                        if (typeof viewer.jumpCameraToGoal === "function") {
+                            viewer.jumpCameraToGoal();
+                        }
+                    }
+                });
+                viewer.addEventListener('mouseleave', () => {
+                    viewer.removeAttribute('auto-rotate');
+                    viewer.removeAttribute('rotation-per-second');
+                    viewer.cameraOrbit = "45deg 60deg 2.5m";
+                    if (typeof viewer.resetTurntableRotation === "function") {
+                        viewer.resetTurntableRotation();
+                    }
+                    viewer.setAttribute('camera-orbit', "45deg 60deg 2.5m");
+                });
+            }
 
             // Repartir en columnas (por orden)
             columns[idx % columnCount].appendChild(card);
         });
 
-        // Configuración para iOS
+        // Configuración optimizada para dispositivos móviles
         if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
             document.querySelectorAll('model-viewer').forEach(viewer => {
                 viewer.arModes = 'quick-look';
+                // Optimizar rendimiento en iOS
+                viewer.setAttribute('camera-orbit', '45deg 60deg 2m');
+                viewer.setAttribute('field-of-view', '30deg');
+            });
+        } else if (navigator.userAgent.match(/Android/i)) {
+            document.querySelectorAll('model-viewer').forEach(viewer => {
+                viewer.arModes = 'scene-viewer webxr';
+                // Optimizar para Android
+                viewer.setAttribute('camera-orbit', '45deg 60deg 2m');
+                viewer.setAttribute('field-of-view', '30deg');
             });
         }
+        
+        // Mejorar rendimiento en dispositivos móviles
+        if (window.innerWidth < 768) {
+            document.querySelectorAll('model-viewer').forEach(viewer => {
+                viewer.setAttribute('shadow-intensity', '1');
+                viewer.setAttribute('shadow-softness', '0.8');
+                // Reducir calidad de sombras en móviles para mejor rendimiento
+                viewer.style.setProperty('--progress-bar-color', '#4A90E2');
+            });
+        }
+        
         // Ajuste de orientación para modelos verticales
         document.querySelectorAll('.model-card[data-ar-type="vertical"] model-viewer').forEach(viewer => {
             viewer.orientation = '0 0 1 90deg';
@@ -769,10 +1045,26 @@
                 }
             });
         });
+        
+        // Prevenir zoom accidental en iOS
+        if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+            document.addEventListener('touchmove', function (event) {
+                if (event.scale !== 1) {
+                    event.preventDefault();
+                }
+            }, { passive: false });
+        }
+    }
+
+    // Optimizar re-renderizado en resize
+    let resizeTimeout;
+    function handleResize() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(renderCatalog, 250);
     }
 
     window.addEventListener('DOMContentLoaded', renderCatalog);
-    window.addEventListener('resize', renderCatalog);
+    window.addEventListener('resize', handleResize);
     </script>
 </body>
 </html>
