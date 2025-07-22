@@ -411,7 +411,7 @@
         /* Dispositivos móviles grandes */
         @media (max-width: 767px) {
             body {
-                padding: 10px 8px;
+                padding: 10px 15px;
             }
             h1 {
                 font-size: 20px;
@@ -421,14 +421,14 @@
             .description {
                 font-size: 14px;
                 margin-bottom: 18px;
-                padding: 0 8px;
+                padding: 0 15px;
                 line-height: 1.4;
             }
             .social-buttons {
                 overflow-x: auto;
                 justify-content: flex-start;
                 -webkit-overflow-scrolling: touch;
-                padding: 0 8px 15px 8px;
+                padding: 0 15px 15px 15px;
                 gap: 10px;
             }
             .social-btn, .social-buttons a {
@@ -440,20 +440,21 @@
             .catalog-flex {
                 flex-direction: column;
                 gap: 15px;
-                padding: 15px 8px;
+                padding: 15px 15px;
             }
             .catalog-column {
                 flex-direction: column;
                 gap: 15px;
                 min-width: 0;
                 width: 100%;
+                align-items: center;
             }
             .model-card {
                 min-height: auto;
                 padding: 12px;
                 margin: 0 auto;
-                max-width: 100%;
-                width: 100%;
+                max-width: calc(100% - 10px);
+                width: calc(100% - 10px);
             }
             .model-card model-viewer {
                 height: 230px;
@@ -501,9 +502,11 @@
                 width: 45px;
             }
             .footer {
-                font-size: 9px;
+                font-size: 12px;
                 margin: 25px auto 10px;
-                padding: 0 10px;
+                padding: 0 15px;
+                line-height: 1.6;
+                max-width: 400px;
             }
             .mobile-only {
                 display: inline;
@@ -516,20 +519,20 @@
         /* Dispositivos móviles pequeños */
         @media (max-width: 479px) {
             body {
-                padding: 8px 5px;
+                padding: 8px 12px;
             }
             h1 {
                 font-size: 18px;
                 margin-bottom: 10px;
-                padding: 0 5px;
+                padding: 0 12px;
             }
             .description {
                 font-size: 13px;
                 margin-bottom: 15px;
-                padding: 0 5px;
+                padding: 0 12px;
             }
             .social-buttons {
-                padding: 0 5px 12px 5px;
+                padding: 0 12px 12px 12px;
                 gap: 8px;
             }
             .social-btn, .social-buttons a {
@@ -541,20 +544,21 @@
             .catalog-flex {
                 flex-direction: column;
                 gap: 12px;
-                padding: 12px 5px;
+                padding: 12px 12px;
             }
             .catalog-column {
                 flex-direction: column;
                 gap: 12px;
                 min-width: 0;
                 width: 100%;
+                align-items: center;
             }
             .model-card {
                 min-height: auto;
                 padding: 10px;
-                margin: 0;
-                max-width: 100%;
-                width: 100%;
+                margin: 0 auto;
+                max-width: calc(100% - 8px);
+                width: calc(100% - 8px);
             }
             .model-card model-viewer {
                 height: 200px;
@@ -611,10 +615,11 @@
                 width: 40px;
             }
             .footer {
-                font-size: 8px;
+                font-size: 11px;
                 margin: 20px auto 8px;
-                padding: 0 8px;
-                line-height: 1.3;
+                padding: 0 12px;
+                line-height: 1.5;
+                max-width: 350px;
             }
             .mobile-only {
                 display: inline;
@@ -627,7 +632,8 @@
         /* Dispositivos muy pequeños */
         @media (max-width: 320px) {
             .model-card {
-                width: 100%;
+                width: calc(100% - 6px);
+                max-width: calc(100% - 6px);
             }
             .model-card model-viewer {
                 height: 180px;
@@ -650,6 +656,13 @@
                 font-size: 11px;
                 padding: 6px 8px;
                 min-width: 80px;
+            }
+            .footer {
+                font-size: 10px;
+                margin: 18px auto 6px;
+                padding: 0 10px;
+                line-height: 1.4;
+                max-width: 300px;
             }
             .mobile-only {
                 display: inline;
