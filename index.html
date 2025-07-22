@@ -439,12 +439,12 @@
             }
             .catalog-flex {
                 flex-direction: column;
-                gap: 15px;
-                padding: 15px 15px;
+                gap: 20px;
+                padding: 15px;
             }
             .catalog-column {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
                 min-width: 0;
                 width: 100%;
                 align-items: center;
@@ -452,9 +452,9 @@
             .model-card {
                 min-height: auto;
                 padding: 12px;
-                margin: 0 auto;
-                max-width: calc(100% - 10px);
-                width: calc(100% - 10px);
+                margin: 0;
+                max-width: calc(100% - 30px);
+                width: calc(100% - 30px);
             }
             .model-card model-viewer {
                 height: 230px;
@@ -543,12 +543,12 @@
             }
             .catalog-flex {
                 flex-direction: column;
-                gap: 12px;
-                padding: 12px 12px;
+                gap: 18px;
+                padding: 12px;
             }
             .catalog-column {
                 flex-direction: column;
-                gap: 12px;
+                gap: 18px;
                 min-width: 0;
                 width: 100%;
                 align-items: center;
@@ -556,9 +556,9 @@
             .model-card {
                 min-height: auto;
                 padding: 10px;
-                margin: 0 auto;
-                max-width: calc(100% - 8px);
-                width: calc(100% - 8px);
+                margin: 0;
+                max-width: calc(100% - 24px);
+                width: calc(100% - 24px);
             }
             .model-card model-viewer {
                 height: 200px;
@@ -631,9 +631,15 @@
 
         /* Dispositivos muy pequeños */
         @media (max-width: 320px) {
+            .catalog-flex {
+                gap: 16px;
+            }
+            .catalog-column {
+                gap: 16px;
+            }
             .model-card {
-                width: calc(100% - 6px);
-                max-width: calc(100% - 6px);
+                width: calc(100% - 20px);
+                max-width: calc(100% - 20px);
             }
             .model-card model-viewer {
                 height: 180px;
