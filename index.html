@@ -147,6 +147,34 @@
             align-items: stretch;
             z-index: 1;
         }
+        
+        /* Estilo especial para card de prototipo */
+        .model-card.prototype {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #dee2e6;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+        }
+        .model-card.prototype:hover {
+            box-shadow: 0 12px 36px rgba(0,0,0,0.16);
+            transform: translateY(-3px) scale(1.02);
+        }
+        .model-card.prototype .model-title {
+            color: #495057;
+            position: relative;
+        }
+        .model-card.prototype .model-title::before {
+            content: "🔬 PROTOTIPO";
+            display: block;
+            font-size: 10px;
+            font-weight: normal;
+            color: #6c757d;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+        .model-card.prototype .model-subtitle {
+            color: #868e96;
+        }
         .model-card:hover {
             box-shadow: 0 16px 48px rgba(0,0,0,0.22);
             transform: translateY(-4px) scale(1.03);
@@ -194,6 +222,15 @@
             opacity: 1;
             margin-top: 8px;
             pointer-events: auto;
+        }
+        
+        /* Descripción expandida especial para prototipos */
+        .model-card.prototype.expanded .floating-description {
+            max-height: 450px; /* Más espacio para descripciones largas */
+        }
+        .model-card.prototype .floating-description {
+            font-size: 12px;
+            line-height: 1.4;
         }
         .model-card.expanded + .model-card {
             transition: margin-top 0.5s cubic-bezier(.4,2,.6,1);
@@ -599,6 +636,19 @@
                 pointer-events: auto !important;
                 overflow: visible !important;
             }
+            
+            /* Ajustes para prototipos en móvil */
+            .model-card.prototype .floating-description {
+                max-height: none !important;
+                opacity: 1 !important;
+                margin-top: 8px !important;
+                pointer-events: auto !important;
+                overflow: visible !important;
+            }
+            .model-card.prototype .model-title::before {
+                font-size: 9px;
+                margin-bottom: 3px;
+            }
             .dimensions-block {
                 padding: 5px;
                 margin-bottom: 10px;
@@ -927,6 +977,21 @@
     const catalogConfig = {
         models: [
             {
+                id: 'prototipo-simplygym',
+                title: 'Soporte Huellero SimplyGym',
+                subtitle: 'Prototipo en desarrollo - Validación requerida',
+                src: '3dmodels/GLB_Prototipo_SIMPLYGYM.glb',
+                productLink: 'https://wa.me/56953706307',
+                arType: 'horizontal',
+                arHint: '(Coloca en una superficie plana)',
+                rotationSpeed: '90deg',
+                dimensions: { alto: '15', ancho: '15', largo: '35' },
+                isPrototype: true,
+                longDescription: `Soporte para huellero de SimplyGym, fabricado en acrílico blanco de 5mm. Texto de instrucciones de uso grabadas en láser y pintadas de color negro. Incluye el isotipo (logo) y texto en relieve a color según referencia. El diseño incorpora una pequeña tapa superior y cuenta con un orificio expuesto para el lector de huella, manteniendo oculto el cuerpo del dispositivo electrónico para un acabado limpio y seguro.<br><br>
+                                <strong>Considerar que este es un modelo PRELIMINAR.<br> 
+                                    Es NECESARIO contar con el lector de huellas y hacer pruebas previas a la definición del producto.</strong>`
+            },
+            {
                 id: 'stand-qr-mediano',
                 title: 'Stand QR Acrílico con Relieve DOGGY SNACKS #2',
                 subtitle: 'Fabricación: 20 de Julio del 2025',
@@ -1250,7 +1315,14 @@
         catalogConfig.models.forEach((model, idx) => {
             const card = document.createElement('div');
             // Agregar clase especial para móviles/tablets que muestre info por defecto
-            card.className = window.innerWidth <= 1023 ? 'model-card mobile-expanded' : 'model-card';
+            let cardClasses = window.innerWidth <= 1023 ? 'model-card mobile-expanded' : 'model-card';
+            
+            // Agregar clase de prototipo si corresponde
+            if (model.isPrototype) {
+                cardClasses += ' prototype';
+            }
+            
+            card.className = cardClasses;
 
             // Dimensiones HTML
             const dimensionsHtml = model.dimensions ? `
@@ -1269,12 +1341,16 @@
                 </div>
             ` : '';
 
+            // Contenido de descripción (usar descripción larga si existe)
+            const descriptionContent = model.longDescription || '';
+            
             // Bloque flotante con dimensiones y enlace de producto
             const floatingHtml = `
                 <div class="floating-description">
+                    ${descriptionContent ? `<div style="margin-bottom: 12px; color: #555; font-size: 12px; line-height: 1.4;">${descriptionContent}</div>` : ''}
                     ${dimensionsHtml}
                     <a href="${model.productLink}" class="product-link" rel="noopener">
-                        ¡Ve aquí el producto!
+                        ${model.isPrototype ? 'Comunicación directa a WhatsApp' : '¡Ve aquí el producto!'}
                     </a>
                 </div>
             `;
