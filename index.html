@@ -86,6 +86,34 @@
         }
         .social-btn.whatsapp, .social-buttons a.whatsapp { background: #25D366; }
         .social-btn.main-page, .social-buttons a.main-page { background: #2C3E50; }
+        
+        /* Botón de Prototipos */
+        .prototype-btn {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: 'Consolas', monospace;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            aspect-ratio: 1;
+            min-width: 50px;
+            max-width: 50px;
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+        }
+        .prototype-btn:hover {
+            background: linear-gradient(135deg, #495057 0%, #343a40 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
 
         .ar-button {
             position: absolute !important;
@@ -244,6 +272,41 @@
             margin-top: 8px !important;
             pointer-events: auto !important;
             overflow: visible !important;
+        }
+
+        /* SISTEMA DE FILTRADO - Mostrar/Ocultar Cards */
+        .model-card {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        /* Por defecto, mostrar productos y ocultar prototipos completamente */
+        .model-card.prototype {
+            display: none;
+        }
+        
+        /* Cuando está activo el modo prototipos */
+        .catalog-showing-prototypes .model-card:not(.prototype) {
+            display: none;
+        }
+        
+        .catalog-showing-prototypes .model-card.prototype {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            opacity: 1;
+            transform: scale(1);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #dee2e6;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+        }
+        
+        /* Mostrar productos cuando no está el modo prototipos activo */
+        .model-card:not(.prototype) {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            opacity: 1;
+            transform: scale(1);
         }
 
         /* DIMENSIONES BLOQUE */
@@ -596,6 +659,13 @@
                 padding: 10px 15px;
                 flex-shrink: 0;
             }
+            .prototype-btn {
+                min-width: 40px;
+                max-width: 40px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
             .catalog-flex {
                 flex-direction: column;
                 gap: 20px;
@@ -645,6 +715,16 @@
             .model-card.prototype .model-title::before {
                 font-size: 9px;
                 margin-bottom: 3px;
+            }
+            
+            /* Ajustes de filtrado para móvil */
+            .catalog-showing-prototypes .model-card.prototype {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 12px;
+                max-width: calc(100% - 30px);
+                width: calc(100% - 30px);
             }
             .dimensions-block {
                 padding: 5px;
@@ -714,6 +794,14 @@
                 font-size: 12px;
                 padding: 8px 12px;
                 flex: 1;
+            }
+            .prototype-btn {
+                min-width: 36px;
+                max-width: 36px;
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+                flex: none;
             }
             .catalog-flex {
                 flex-direction: column;
@@ -799,6 +887,16 @@
             .desktop-only {
                 display: none;
             }
+            
+            /* Ajustes de filtrado para móvil pequeño */
+            .catalog-showing-prototypes .model-card.prototype {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 10px;
+                max-width: calc(100% - 24px);
+                width: calc(100% - 24px);
+            }
         }
 
         /* Dispositivos muy pequeños */
@@ -838,6 +936,13 @@
                 padding: 6px 8px;
                 min-width: 80px;
             }
+            .prototype-btn {
+                min-width: 32px;
+                max-width: 32px;
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
             .footer {
                 font-size: 10px;
                 margin: 18px auto 6px;
@@ -850,6 +955,16 @@
             }
             .desktop-only {
                 display: none;
+            }
+            
+            /* Ajustes de filtrado para dispositivos muy pequeños */
+            .catalog-showing-prototypes .model-card.prototype {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 8px;
+                max-width: calc(100% - 20px);
+                width: calc(100% - 20px);
             }
         }
     </style>
@@ -894,6 +1009,9 @@
     
     <!-- Botones de redes sociales - Mezcla de enlaces y botones -->
     <div class="social-buttons">
+        <button class="prototype-btn" id="prototype-toggle" title="Prototipos">
+            P
+        </button>
         <a href="https://www.instagram.com/testa.cl/" class="social-btn instagram">
             Instagram
         </a>
@@ -971,16 +1089,29 @@
         models: [
             {
                 id: 'prototipo-simplygym',
-                title: 'Soporte Huellero SimplyGym',
+                title: 'Soporte Huellero SimplyGym NEGRO',
                 subtitle: 'Prototipo en desarrollo - Validación requerida',
                 src: '3dmodels/GLB_Prototipo_SGYMN.glb',
                 productLink: 'https://wa.me/56953706307',
                 rotationSpeed: '120deg',
                 dimensions: { alto: '15', ancho: '15', largo: '35' },
                 isPrototype: true,
-                longDescription: `Soporte para huellero de SimplyGym, fabricado en acrílico blanco de 5mm. Texto de instrucciones de uso grabadas en láser y pintadas de color negro. Incluye el isotipo (logo) y texto en relieve a color según referencia. El diseño incorpora una pequeña tapa superior y cuenta con un orificio expuesto para el lector de huella, manteniendo oculto el cuerpo del dispositivo electrónico para un acabado limpio y seguro.<br><br>
+                longDescription: `Correción soporte para huellero de SimplyGym, fabricado en acrílico negro de 5mm. Texto de instrucciones de uso grabadas en láser y pintadas de color blanco. Incluye el isotipo (logo) y texto en relieve a color según referencia. El diseño incorpora una pequeña tapa superior y cuenta con un orificio expuesto para el lector de huella, manteniendo oculto el cuerpo del dispositivo electrónico para un acabado limpio y seguro.<br><br>
                 <strong>Considerar que este es un modelo PRELIMINAR.<br> 
                 Es NECESARIO contar con el lector de huellas y hacer pruebas previas a la definición del producto.</strong>`
+            },
+            {
+                id: 'prototipo-nuevo',
+                title: 'Nuevo Prototipo - En Desarrollo',
+                subtitle: 'Prototipo en desarrollo - Pendiente de definición',
+                src: '3dmodels/GLB_Prototipo_SGYM.glb'',
+                productLink: 'https://wa.me/56953706307',
+                rotationSpeed: '120deg',
+                dimensions: { alto: '15', ancho: '15', largo: '35' },
+                isPrototype: true,
+                longDescription: `Nuevo prototipo en desarrollo. Descripción pendiente de actualización según especificaciones finales del proyecto. Se recomienda contacto directo para discutir requerimientos específicos y detalles técnicos.<br><br>
+                <strong>Este es un modelo PRELIMINAR.<br> 
+                Especificaciones sujetas a cambios según validación del cliente.</strong>`
             },
             {
                 id: 'stand-qr-mediano',
@@ -1266,6 +1397,9 @@
             }
             
             card.className = cardClasses;
+            
+            // Agregar atributo data para facilitar filtrado
+            card.setAttribute('data-type', model.isPrototype ? 'prototype' : 'product');
 
             // Dimensiones HTML
             const dimensionsHtml = model.dimensions ? `
@@ -1477,8 +1611,44 @@
     
     // Manejo optimizado de resize
     window.addEventListener('resize', handleResize);
+    
+    // SISTEMA DE FILTRADO DE PROTOTIPOS
+    let showingPrototypes = false;
+    
+    // Función para alternar entre productos y prototipos
+    function togglePrototypes() {
+        const catalogFlex = document.getElementById('catalog-flex');
+        const prototypeBtn = document.getElementById('prototype-toggle');
+        
+        showingPrototypes = !showingPrototypes;
+        
+        if (showingPrototypes) {
+            catalogFlex.classList.add('catalog-showing-prototypes');
+            prototypeBtn.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+            prototypeBtn.style.transform = 'translateY(-2px)';
+            prototypeBtn.style.boxShadow = '0 6px 16px rgba(40, 167, 69, 0.4)';
+            console.log('🔬 Mostrando prototipos');
+        } else {
+            catalogFlex.classList.remove('catalog-showing-prototypes');
+            prototypeBtn.style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+            prototypeBtn.style.transform = 'none';
+            prototypeBtn.style.boxShadow = 'none';
+            console.log('📦 Mostrando productos terminados');
+        }
+    }
+    
+    // Configurar el botón de prototipos cuando esté listo el DOM
+    document.addEventListener('DOMContentLoaded', () => {
+        const prototypeBtn = document.getElementById('prototype-toggle');
+        if (prototypeBtn) {
+            // Activar funcionalidad del botón
+            prototypeBtn.addEventListener('click', () => {
+                console.log('🔘 Botón P presionado - Alternando vista');
+                togglePrototypes(); // ¡Funcionalidad activada!
+            });
+            console.log('✅ Botón de prototipos configurado y activo');
+        }
+    });
     </script>
 </body>
 </html>
-
-
