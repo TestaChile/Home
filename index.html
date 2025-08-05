@@ -275,13 +275,6 @@
             overflow: visible !important;
         }
 
-        /* SISTEMA DE PÁGINAS - CSS para prototipos */
-        .model-card.prototype {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border: 2px solid #dee2e6;
-            box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-        }
-
         /* DIMENSIONES BLOQUE */
         .dimensions-block {
             background: #e2e2e2;
@@ -336,8 +329,6 @@
             text-align: center;
             cursor: pointer;
             padding: 2px 0;
-            position: relative;
-            overflow: hidden;
         }
         .product-link:hover, .product-link:focus {
             color: #1a4e8a;
@@ -357,8 +348,6 @@
             text-align: center;
             cursor: pointer;
             padding: 2px 0;
-            position: relative;
-            overflow: hidden;
         }
         .quote-link:hover, .quote-link:focus {
             color: #1d8c4a;
@@ -1000,6 +989,7 @@
     // SISTEMA DE CARGA PROGRESIVA
     let loadedModels = 0;
     let totalModels = 0;
+    let showingPrototypes = false;
     let loadingStartTime = Date.now();
 
     // Actualizar barra de progreso
@@ -1097,7 +1087,6 @@
     // 📦 PRODUCTOS TERMINADOS - Aquí defines solo los productos finalizados (orden cronológico preservado)
     const productsConfig = {
         models: [
-            //yo aquí agrego el último modelo publicado que NO ES PROTOTIPO
             {
                 id: 'stand-qr-single-doggysnacks-dt',
                 title: 'Stand QR Acrílico con Relieve DOGGY SNACKS #2',
@@ -1319,10 +1308,6 @@
 
     // CONFIGURACIÓN DE OPTIMIZACIÓN - CARGA INTELIGENTE
     const PRIORITY_MODELS = 6; // Solo los primeros 6 modelos cargan inmediatamente
-    
-    // Contar total de modelos según el modo activo
-    totalModels = 0;
-    let showingPrototypes = false;
 
     // Función para obtener la configuración activa
     function getActiveConfig() {
