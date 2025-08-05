@@ -12,8 +12,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <!-- Font Awesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome diferido para optimización -->
+    <!-- Se carga después mediante JavaScript -->
     <!-- Fuentes -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Consolas&display=swap');
@@ -256,6 +256,7 @@
         .model-card.prototype .floating-description {
             font-size: 12px;
             line-height: 1.4;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
         }
         .model-card.expanded + .model-card {
             transition: margin-top 0.5s cubic-bezier(.4,2,.6,1);
@@ -274,39 +275,11 @@
             overflow: visible !important;
         }
 
-        /* SISTEMA DE FILTRADO - Mostrar/Ocultar Cards */
-        .model-card {
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        
-        /* Por defecto, mostrar productos y ocultar prototipos completamente */
+        /* SISTEMA DE PÁGINAS - CSS para prototipos */
         .model-card.prototype {
-            display: none;
-        }
-        
-        /* Cuando está activo el modo prototipos */
-        .catalog-showing-prototypes .model-card:not(.prototype) {
-            display: none;
-        }
-        
-        .catalog-showing-prototypes .model-card.prototype {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            opacity: 1;
-            transform: scale(1);
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border: 2px solid #dee2e6;
             box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-        }
-        
-        /* Mostrar productos cuando no está el modo prototipos activo */
-        .model-card:not(.prototype) {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            opacity: 1;
-            transform: scale(1);
         }
 
         /* DIMENSIONES BLOQUE */
@@ -358,17 +331,37 @@
             font-weight: bold;
             font-size: 12px;
             text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: color 0.2s, border-bottom 0.2s, background 0.2s;
+            transition: color 0.3s ease;
             margin: 10px auto 0 auto;
             text-align: center;
             cursor: pointer;
             padding: 2px 0;
+            position: relative;
+            overflow: hidden;
         }
         .product-link:hover, .product-link:focus {
             color: #1a4e8a;
-            border-bottom: 2px solid #4A90E2;
-            background: #eaf3fc;
+        }
+
+        /* ENLACE DE COTIZACIÓN WHATSAPP */
+        .quote-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #25D366;
+            font-weight: bold;
+            font-size: 12px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            margin: 5px auto 0 auto;
+            text-align: center;
+            cursor: pointer;
+            padding: 2px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .quote-link:hover, .quote-link:focus {
+            color: #1d8c4a;
         }
 
         /* LOGO */
@@ -716,16 +709,6 @@
                 font-size: 9px;
                 margin-bottom: 3px;
             }
-            
-            /* Ajustes de filtrado para móvil */
-            .catalog-showing-prototypes .model-card.prototype {
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-                padding: 12px;
-                max-width: calc(100% - 30px);
-                width: calc(100% - 30px);
-            }
             .dimensions-block {
                 padding: 5px;
                 margin-bottom: 10px;
@@ -887,16 +870,6 @@
             .desktop-only {
                 display: none;
             }
-            
-            /* Ajustes de filtrado para móvil pequeño */
-            .catalog-showing-prototypes .model-card.prototype {
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-                padding: 10px;
-                max-width: calc(100% - 24px);
-                width: calc(100% - 24px);
-            }
         }
 
         /* Dispositivos muy pequeños */
@@ -955,16 +928,6 @@
             }
             .desktop-only {
                 display: none;
-            }
-            
-            /* Ajustes de filtrado para dispositivos muy pequeños */
-            .catalog-showing-prototypes .model-card.prototype {
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-                padding: 8px;
-                max-width: calc(100% - 20px);
-                width: calc(100% - 20px);
             }
         }
     </style>
@@ -1073,48 +1036,70 @@
             if (loadingScreen && mainContent) {
                 loadingScreen.classList.add('hidden');
                 mainContent.classList.add('loaded');
+                
+                // OPTIMIZACIÓN: Cargar Font Awesome después de mostrar contenido
+                setTimeout(() => {
+                    const fontAwesome = document.createElement('link');
+                    fontAwesome.rel = 'stylesheet';
+                    fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+                    document.head.appendChild(fontAwesome);
+                    console.log('🎨 Font Awesome cargado de forma diferida');
+                }, 500);
             }
         }, 500);
     }
 
-    // Fallback timer - mostrar contenido después de máximo 15 segundos
+    // Fallback timer optimizado - mostrar contenido después de máximo 8 segundos
     let fallbackTimer = setTimeout(() => {
-        console.warn('⏰ Timeout: Mostrando contenido por seguridad');
+        console.warn('⏰ Timeout optimizado: Mostrando contenido por seguridad');
         updateProgress(totalModels, totalModels);
         showMainContent();
-    }, 15000);
+    }, 8000); // Reducido de 15 a 8 segundos
 
-    // CONFIGURACIÓN - Aquí defines todos tus modelos
-    const catalogConfig = {
+    // CONFIGURACIÓN - SEPARACIÓN COMPLETA: PROTOTIPOS Y PRODUCTOS
+    
+    // 🔬 PROTOTIPOS - Aquí defines solo los prototipos en desarrollo
+    const prototypesConfig = {
         models: [
             {
-                id: 'prototipo-simplygym',
-                title: 'Soporte Huellero SimplyGym NEGRO',
+                id: 'prototype-simplygym-v2',
+                title: 'Prototipo - En Desarrollo Etapa 2',
                 subtitle: 'Prototipo en desarrollo - Validación requerida',
                 src: '3dmodels/GLB_Prototipo_SGYMN.glb',
                 productLink: 'https://wa.me/56953706307',
                 rotationSpeed: '120deg',
                 dimensions: { alto: '15', ancho: '15', largo: '35' },
                 isPrototype: true,
-                longDescription: `Correción soporte para huellero de SimplyGym, fabricado en acrílico negro de 5mm. Texto de instrucciones de uso grabadas en láser y pintadas de color blanco. Incluye el isotipo (logo) y texto en relieve a color según referencia. El diseño incorpora una pequeña tapa superior y cuenta con un orificio expuesto para el lector de huella, manteniendo oculto el cuerpo del dispositivo electrónico para un acabado limpio y seguro.<br><br>
+                longDescription: `Correción de color solicitado por el cliente, ahora fabricado en acrílico NEGRO de 5mm. Texto de instrucciones de uso grabadas en láser y pintadas de color blanco.
+                El resto del modelo se conservó.<br><br>
                 <strong>Considerar que este es un modelo PRELIMINAR.<br> 
                 Es NECESARIO contar con el lector de huellas y hacer pruebas previas a la definición del producto.</strong>`
             },
             {
-                id: 'prototipo-nuevo',
-                title: 'Nuevo Prototipo - En Desarrollo',
-                subtitle: 'Prototipo en desarrollo - Pendiente de definición',
+                id: 'prototype-simplygym-v1',
+                title: 'Prototipo - En Desarrollo Etapa 1',
+                subtitle: 'Soporte para lector de huella SimplyGYM',
                 src: '3dmodels/GLB_Prototipo_SGYM.glb',
                 productLink: 'https://wa.me/56953706307',
                 rotationSpeed: '120deg',
                 dimensions: { alto: '15', ancho: '15', largo: '35' },
                 isPrototype: true,
-                longDescription: `Nuevo prototipo en desarrollo. Descripción pendiente de actualización según especificaciones finales del proyecto. Se recomienda contacto directo para discutir requerimientos específicos y detalles técnicos.<br><br>
+                longDescription: `Primera propuesta para el Soporte Lector de Huella SimplyGYM. Está pensado para ser fabricado en acrílico blanco
+                Isotipo (logo) y texto del logo hecho en acrílico de 3mm de espesor, color según referencia.
+                Orificio para lector de huellas, y techo para cubrirlo del sol.<br><br>
                 <strong>Este es un modelo PRELIMINAR.<br> 
                 Especificaciones sujetas a cambios según validación del cliente.</strong>`
-            },
+            }
+            // Aquí puedes agregar más prototipos sin afectar los productos terminados
+        ]
+    };
+    
+    // 📦 PRODUCTOS TERMINADOS - Aquí defines solo los productos finalizados (orden cronológico preservado)
+    const productsConfig = {
+        models: [
+            //yo aqui agrego el último modelo publicado que NO ES PROTOTIPO
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-doggysnacks-dt',
                 title: 'Stand QR Acrílico con Relieve DOGGY SNACKS #2',
                 subtitle: 'Fabricación: 20 de Julio del 2025',
                 src: '3dmodels/GLB_StandQR_DOGGY_SNACKS_DT.glb',
@@ -1123,7 +1108,7 @@
                 dimensions: { alto: '12', ancho: '6', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-doggysnacks-qr',
                 title: 'Stand QR Acrílico con Relieve DOGGY SNACKS #1',
                 subtitle: 'Fabricación: 17 de Julio del 2025',
                 src: '3dmodels/GLB_StandQR_DOGGY_SNACKS_QR.glb',
@@ -1131,8 +1116,8 @@
                 rotationSpeed: '120deg',
                 dimensions: { alto: '12', ancho: '6', largo: '5' }
             },
-            {
-                id: 'stand-qr-mediano',
+              {
+                id: 'stand-qr-duo-kavana',
                 title: 'Stand DUO QR - Datos de Transferencia KAVANA',
                 subtitle: 'Fabricación: 13 de Julio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_KAVANA.glb',
@@ -1141,7 +1126,7 @@
                 dimensions: { alto: '14', ancho: '14', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-kineoperatoria',
                 title: 'Stand QR Acrílico Kine Postoperatoria',
                 subtitle: 'Fabricación: 20 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_KINEOPERATORIA.glb',
@@ -1150,8 +1135,8 @@
                 dimensions: { alto: '12', ancho: '8', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
-                title: 'Mini Exhibidor Acrílico CEMAS #2',
+                id: 'exhibitor-cemas-v2',
+                title: 'Exhibidor Acrílico CEMAS #2',
                 subtitle: 'Fabricación: 18 de Junio del 2025',
                 src: '3dmodels/GLB_Exhibidor_CEMAS_V2.glb',
                 productLink: 'https://www.instagram.com/testa.cl/',
@@ -1159,8 +1144,8 @@
                 dimensions: { alto: '17', ancho: '8', largo: '4' }
             },
             {
-                id: 'stand-qr-mediano',
-                title: 'Mini Exhibidor Acrílico CEMAS #1',
+                id: 'exhibitor-cemas-v1',
+                title: 'Exhibidor Acrílico CEMAS #1',
                 subtitle: 'Fabricación: 18 de Junio del 2025',
                 src: '3dmodels/GLB_Exhibidor_CEMAS.glb',
                 productLink: 'https://www.instagram.com/testa.cl/',
@@ -1168,7 +1153,7 @@
                 dimensions: { alto: '17', ancho: '8', largo: '4' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-duo-voir-white',
                 title: 'Stand DUO QR VOIR Chile BLANCO',
                 subtitle: 'Fabricación: 17 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_VOIR_02.glb',
@@ -1177,7 +1162,7 @@
                 dimensions: { alto: '12,5', ancho: '12,5', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-duo-voir-black',
                 title: 'Stand DUO QR VOIR Chile NEGRO',
                 subtitle: 'Fabricación: 17 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_VOIR_01.glb',
@@ -1186,8 +1171,8 @@
                 dimensions: { alto: '12,5', ancho: '12,5', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
-                title: 'Exhibidor QR Acrílico FLOR RÚSTICA',
+                id: 'exhibitor-large-florrustica',
+                title: 'Exhibidor Grande QR Acrílico FLOR RÚSTICA',
                 subtitle: 'Fabricación: 12 de Junio del 2025',
                 src: '3dmodels/GLB_Exhibidor_FLORRUSTICA.glb',
                 productLink: 'https://www.instagram.com/testa.cl/',
@@ -1195,7 +1180,7 @@
                 dimensions: { alto: '18', ancho: '5,5', largo: '28' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-bioox',
                 title: 'Stand QR Acrílico BIOOX',
                 subtitle: 'Fabricación: 5 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_BIOOX.glb',
@@ -1204,7 +1189,7 @@
                 dimensions: { alto: '12', ancho: '8', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-duo-babycorner',
                 title: 'Stand DUO QR BABY CORNER',
                 subtitle: 'Fabricación: 3 de Junio del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_BABYCORNER.glb',
@@ -1213,7 +1198,7 @@
                 dimensions: { alto: '16', ancho: '14', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-zetoink',
                 title: 'Stand QR ZETO INK',
                 subtitle: 'Fabricación: 15 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_TATTTO_03.glb',
@@ -1222,7 +1207,7 @@
                 dimensions: { alto: '18', ancho: '9.5', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-dahood-form',
                 title: 'Stand QR DAHOOD STUDIO (Formulario)',
                 subtitle: 'Fabricación: 15 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_TATTTO_02.glb',
@@ -1231,7 +1216,7 @@
                 dimensions: { alto: '18', ancho: '9.5', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-dahood',
                 title: 'Stand QR DAHOOD STUDIO',
                 subtitle: 'Fabricación: 15 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_TATTTO_01.glb',
@@ -1240,7 +1225,7 @@
                 dimensions: { alto: '18', ancho: '9.5', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-clubbarber-google',
                 title: 'Stand QR EL CLUB Versión Google',
                 subtitle: 'Fabricación: 11 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_CLUBBARBER_02.glb',
@@ -1249,7 +1234,7 @@
                 dimensions: { alto: '12', ancho: '8', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-clubbarber',
                 title: 'Stand QR EL CLUB',
                 subtitle: 'Fabricación: 11 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_CLUBBARBER_01.glb',
@@ -1258,7 +1243,7 @@
                 dimensions: { alto: '12', ancho: '8', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-dalfip-wood',
                 title: 'Stand QR Terciado DALFIP',
                 subtitle: 'Fabricación: 6 de Mayo del 2025',
                 src: '3dmodels/GLB_StandQR_ARMABLE_DALFIP.glb',
@@ -1267,7 +1252,7 @@
                 dimensions: { alto: '12', ancho: '8', largo: '5' }
             }, 
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-duo-skincare',
                 title: 'Stand DUO QR Acrílico SKINCARE',
                 subtitle: 'Fabricación: 23 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_DUO_SKINCARE.glb',
@@ -1276,7 +1261,7 @@
                 dimensions: { alto: '14', ancho: '14', largo: '5' }
             }, 
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-souvenir',
                 title: 'Stand QR Acrílico SOUVENIR CHILE',
                 subtitle: 'Fabricación: 23 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_SOUVENIR.glb',
@@ -1285,7 +1270,7 @@
                 dimensions: { alto: '12', ancho: '8', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-coellos',
                 title: 'Stand QR Acrílico COELLO',
                 subtitle: 'Fabricación: 23 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_COELLOS.glb',
@@ -1294,7 +1279,7 @@
                 dimensions: { alto: '14', ancho: '14', largo: '5' }
             }, 
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-santtorino',
                 title: 'Stand QR Acrílico SANTTORINO BISTRO',
                 subtitle: 'Fabricación: 16 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_SANTTORINO.glb',
@@ -1303,7 +1288,7 @@
                 dimensions: { alto: '12', ancho: '8', largo: '5' }
             },
             {
-                id: 'stand-qr-mediano',
+                id: 'stand-qr-single-jairoz',
                 title: 'Stand QR Acrílico JAIROZ Cóctel & Drinks',
                 subtitle: 'Fabricación: 11 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_JAIROZ.glb',
@@ -1312,7 +1297,7 @@
                 dimensions: { alto: '17', ancho: '8', largo: '5' }
             },
             {
-                id: 'stand-qr-pequeno',
+                id: 'stand-qr-single-gogi',
                 title: 'Stand QR Acrílico GOGI',
                 subtitle: 'Fabricación: 8 de Abril del 2025',
                 src: '3dmodels/GLB_StandQR_GOGI.glb',
@@ -1321,7 +1306,7 @@
                 dimensions: { alto: '12', ancho: '8', largo: '5' }
             },
             {
-                id: 'letrero-personalizado',
+                id: 'sign-custom-blacksnake',
                 title: 'Escudo personalizado BLACK SNAKE',
                 subtitle: 'Fabricación: 4 de Abril del 2025',
                 src: '3dmodels/GLB_Letrero_BLACKSNAKE.glb',
@@ -1332,8 +1317,17 @@
         ]
     };
 
-    // Contar total de modelos
-    totalModels = catalogConfig.models.length;
+    // CONFIGURACIÓN DE OPTIMIZACIÓN - CARGA INTELIGENTE
+    const PRIORITY_MODELS = 6; // Solo los primeros 6 modelos cargan inmediatamente
+    
+    // Contar total de modelos según el modo activo
+    totalModels = 0;
+    let showingPrototypes = false;
+
+    // Función para obtener la configuración activa
+    function getActiveConfig() {
+        return showingPrototypes ? prototypesConfig : productsConfig;
+    }
 
     // Flexbox: columnas responsivas mejoradas para móvil
     const getColumnCount = () => {
@@ -1385,8 +1379,12 @@
             columns.push(col);
             catalogFlex.appendChild(col);
         }
-        // Repartir los modelos en columnas (por orden)
-        catalogConfig.models.forEach((model, idx) => {
+        
+        // Obtener la configuración activa (prototipos o productos)
+        const activeConfig = getActiveConfig();
+        
+        // Repartir los modelos en columnas (por orden secuencial)
+        activeConfig.models.forEach((model, idx) => {
             const card = document.createElement('div');
             // Agregar clase especial para móviles/tablets que muestre info por defecto
             let cardClasses = window.innerWidth <= 1023 ? 'model-card mobile-expanded' : 'model-card';
@@ -1427,8 +1425,11 @@
                     ${descriptionContent ? `<div style="margin-bottom: 12px; color: #555; font-size: 12px; line-height: 1.4;">${descriptionContent}</div>` : ''}
                     ${dimensionsHtml}
                     <a href="${model.productLink}" class="product-link" rel="noopener">
-                        ${model.isPrototype ? 'Comunicación directa a WhatsApp' : '¡Ve aquí el producto!'}
+                        ${model.isPrototype ? 'Comunicación directa a WhatsApp' : 'Ve el producto en IG'}
                     </a>
+                    ${!model.isPrototype ? `<a href="https://wa.me/56953706307?text=Hola!%20Me%20interesa%20cotizar%20un%20producto%20similar%20al%20${encodeURIComponent(model.title)}" class="quote-link" rel="noopener">
+                        ¡Cotiza el tuyo aquí!
+                    </a>` : ''}
                 </div>
             `;
 
@@ -1445,7 +1446,7 @@
                     environment-image="environments/studio_country_hall_2k.hdr"
                     interaction-prompt="none"
                     xr-environment
-                    loading="eager"
+                    loading="${idx < PRIORITY_MODELS ? 'eager' : 'lazy'}"
                     auto-rotate-delay="0"
                 >
                     <button slot="ar-button" class="ar-button">
@@ -1460,30 +1461,40 @@
             // Configurar eventos de carga para el model-viewer
             const modelViewer = card.querySelector('model-viewer');
             
-            // Evento único de carga
+            // Evento único de carga - OPTIMIZADO
             modelViewer.addEventListener('load', () => {
-                loadedModels++;
-                updateProgress(loadedModels, totalModels);
-                console.log(`✅ Modelo cargado: ${model.title} (${loadedModels}/${totalModels})`);
-                
-                // Si todos los modelos están cargados, mostrar contenido
-                if (loadedModels >= totalModels) {
-                    updateProgress(totalModels, totalModels);
-                    clearTimeout(fallbackTimer);
-                    showMainContent();
+                // Solo contar modelos prioritarios para la barra de progreso
+                if (idx < PRIORITY_MODELS) {
+                    loadedModels++;
+                    updateProgress(loadedModels, totalModels);
+                    console.log(`✅ Modelo prioritario cargado: ${model.title} (${loadedModels}/${totalModels})`);
+                    
+                    // Si todos los modelos prioritarios están cargados, mostrar contenido
+                    if (loadedModels >= totalModels) {
+                        updateProgress(totalModels, totalModels);
+                        clearTimeout(fallbackTimer);
+                        showMainContent();
+                    }
+                } else {
+                    // Los modelos lazy se cargan en segundo plano
+                    console.log(`🔄 Modelo lazy cargado: ${model.title}`);
                 }
             });
 
-            // Manejo de errores de carga
+            // Manejo de errores de carga - OPTIMIZADO
             modelViewer.addEventListener('error', (event) => {
                 console.warn(`⚠️ Error cargando modelo: ${model.title}`, event);
-                loadedModels++; // Contar como "cargado" para no bloquear
-                updateProgress(loadedModels, totalModels);
                 
-                if (loadedModels >= totalModels) {
-                    updateProgress(totalModels, totalModels);
-                    clearTimeout(fallbackTimer);
-                    showMainContent();
+                // Solo contar errores de modelos prioritarios
+                if (idx < PRIORITY_MODELS) {
+                    loadedModels++; // Contar como "cargado" para no bloquear
+                    updateProgress(loadedModels, totalModels);
+                    
+                    if (loadedModels >= totalModels) {
+                        updateProgress(totalModels, totalModels);
+                        clearTimeout(fallbackTimer);
+                        showMainContent();
+                    }
                 }
             });
 
@@ -1560,28 +1571,44 @@
                 });
             }
 
-            // Repartir en columnas (por orden)
-            columns[idx % columnCount].appendChild(card);
+            // Distribución por filas: llenar de izquierda a derecha, fila por fila
+            const targetColumnIndex = idx % columnCount;
+            columns[targetColumnIndex].appendChild(card);
         });
 
-        // Configuración optimizada para dispositivos móviles
+        // Configuración optimizada para dispositivos móviles - RENDIMIENTO MEJORADO
         if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
             document.querySelectorAll('model-viewer').forEach(viewerEl => {
                 viewerEl.arModes = 'quick-look';
                 viewerEl.setAttribute('field-of-view', '30deg');
+                // Optimización iOS: Sin HDR en móviles
+                if (window.innerWidth < 768) {
+                    viewerEl.removeAttribute('environment-image');
+                    viewerEl.setAttribute('shadow-intensity', '0.8');
+                    viewerEl.setAttribute('shadow-softness', '0.5');
+                }
             });
         } else if (navigator.userAgent.match(/Android/i)) {
             document.querySelectorAll('model-viewer').forEach(viewerEl => {
                 viewerEl.arModes = 'scene-viewer webxr';
                 viewerEl.setAttribute('field-of-view', '30deg');
+                // Optimización Android: Sin HDR en móviles
+                if (window.innerWidth < 768) {
+                    viewerEl.removeAttribute('environment-image');
+                    viewerEl.setAttribute('shadow-intensity', '0.8');
+                    viewerEl.setAttribute('shadow-softness', '0.5');
+                }
             });
         }
         
-        // Mejorar rendimiento en dispositivos móviles
+        // Mejorar rendimiento en dispositivos móviles - CONFIGURACIÓN AGRESIVA
         if (window.innerWidth < 768) {
             document.querySelectorAll('model-viewer').forEach(viewerEl => {
-                viewerEl.setAttribute('shadow-intensity', '1');
-                viewerEl.setAttribute('shadow-softness', '0.8');
+                // Configuración de bajo consumo para móviles
+                viewerEl.setAttribute('shadow-intensity', '0.5');
+                viewerEl.setAttribute('shadow-softness', '0.3');
+                viewerEl.removeAttribute('environment-image'); // Sin HDR
+                viewerEl.setAttribute('exposure', '0.8'); // Menos exposición
             });
         }
         
@@ -1604,7 +1631,13 @@
 
     // Iniciar carga cuando esté listo el DOM
     window.addEventListener('DOMContentLoaded', () => {
-        console.log('🚀 Iniciando carga de catálogo 3D...');
+        console.log('🚀 Iniciando carga de catálogo 3D optimizado...');
+        
+        // OPTIMIZACIÓN: Solo contar los modelos prioritarios para la carga inicial
+        const activeConfig = showingPrototypes ? prototypesConfig : productsConfig;
+        totalModels = Math.min(activeConfig.models.length, PRIORITY_MODELS);
+        console.log(`📦 Carga prioritaria: ${totalModels} modelos (de ${activeConfig.models.length} totales)`);
+        
         updateProgress(0, totalModels);
         renderCatalog();
     });
@@ -1612,29 +1645,41 @@
     // Manejo optimizado de resize
     window.addEventListener('resize', handleResize);
     
-    // SISTEMA DE FILTRADO DE PROTOTIPOS
-    let showingPrototypes = false;
+    // SISTEMA DE FILTRADO DE PROTOTIPOS - COMPLETAMENTE SEPARADO
     
-    // Función para alternar entre productos y prototipos
+    // Función para alternar entre productos y prototipos (páginas independientes)
     function togglePrototypes() {
-        const catalogFlex = document.getElementById('catalog-flex');
         const prototypeBtn = document.getElementById('prototype-toggle');
         
         showingPrototypes = !showingPrototypes;
         
         if (showingPrototypes) {
-            catalogFlex.classList.add('catalog-showing-prototypes');
+            // Cambiar a modo prototipos
             prototypeBtn.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
             prototypeBtn.style.transform = 'translateY(-2px)';
             prototypeBtn.style.boxShadow = '0 6px 16px rgba(40, 167, 69, 0.4)';
-            console.log('🔬 Mostrando prototipos');
+            console.log('🔬 Cambiando a página de prototipos');
+            
+            // Actualizar contador y re-renderizar - OPTIMIZADO
+            const activeConfig = showingPrototypes ? prototypesConfig : productsConfig;
+            totalModels = Math.min(activeConfig.models.length, PRIORITY_MODELS);
+            loadedModels = 0; // Resetear contador
+            
         } else {
-            catalogFlex.classList.remove('catalog-showing-prototypes');
+            // Cambiar a modo productos terminados
             prototypeBtn.style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
             prototypeBtn.style.transform = 'none';
             prototypeBtn.style.boxShadow = 'none';
-            console.log('📦 Mostrando productos terminados');
+            console.log('📦 Cambiando a página de productos terminados');
+            
+            // Actualizar contador y re-renderizar - OPTIMIZADO
+            const activeConfig = showingPrototypes ? prototypesConfig : productsConfig;
+            totalModels = Math.min(activeConfig.models.length, PRIORITY_MODELS);
+            loadedModels = 0; // Resetear contador
         }
+        
+        // Re-renderizar el catálogo completo con la nueva configuración
+        renderCatalog();
     }
     
     // Configurar el botón de prototipos cuando esté listo el DOM
