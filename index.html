@@ -7,6 +7,7 @@
     <!-- Versión fija de model-viewer -->
     <script type="module" src="https://unpkg.com/@google/model-viewer@2.1.1/dist/model-viewer.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Catálogo 3D de exhibidores, stands y letreros para comercios en Chile. Descubre modelos personalizables y cotiza fácilmente para tu tienda o negocio.">
     <!-- Prevenir zoom y mantener comportamiento consistente -->
     <meta name="format-detection" content="telephone=no">
     <meta name="mobile-web-app-capable" content="yes">
@@ -214,9 +215,49 @@ body.dark-mode .product-link {
         }
         .social-btn.instagram, .social-buttons a.instagram { 
             background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #F77737); 
+            font-family: 'Consolas', monospace;
+            font-size: 15px;
+            border-radius: 22px;
+            padding: 8px 22px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(64,93,230,0.10);
+            transition: box-shadow 0.2s, transform 0.2s;
+            text-decoration: none !important;
+            display: inline-block;
+            border: none;
         }
-        .social-btn.whatsapp, .social-buttons a.whatsapp { background: #25D366; }
-        .social-btn.main-page, .social-buttons a.main-page { background: #2C3E50; }
+        .social-btn.whatsapp, .social-buttons a.whatsapp, .product-link.whatsapp {
+            background: linear-gradient(45deg, #25D366 0%, #128C7E 100%);
+            color: #fff !important;
+            font-family: 'Consolas', monospace;
+            font-size: 15px;
+            border-radius: 22px;
+            padding: 8px 22px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(37,211,102,0.10);
+            transition: box-shadow 0.2s, transform 0.2s;
+            text-decoration: none !important;
+            display: inline-block;
+            border: none;
+        }
+        .social-btn.main-page, .social-buttons a.main-page, .product-link.main-page {
+            background: linear-gradient(45deg, #4A90E2 0%, #6e48aa 100%);
+            color: #fff !important;
+            font-family: 'Consolas', monospace;
+            font-size: 15px;
+            border-radius: 22px;
+            padding: 8px 22px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(74,144,226,0.10);
+            transition: box-shadow 0.2s, transform 0.2s;
+            text-decoration: none !important;
+            display: inline-block;
+            border: none;
+        }
+        .product-link.whatsapp:hover, .product-link.main-page:hover, .social-btn.instagram:hover, .social-btn.whatsapp:hover, .social-btn.main-page:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            transform: translateY(-2px) scale(1.04);
+        }
         
         /* Botón de Prototipos */
         .prototype-btn {
@@ -312,10 +353,6 @@ body.dark-mode .product-link {
             border: 2px solid #dee2e6;
             box-shadow: none !important;
         }
-        .model-card.prototype:hover {
-            box-shadow: none !important;
-            transform: translateY(-3px) scale(1.02);
-        }
         .model-card.prototype .model-title {
             color: #495057;
             position: relative;
@@ -330,11 +367,12 @@ body.dark-mode .product-link {
             margin-bottom: 4px;
             text-transform: uppercase;
         }
-        .model-card:hover {
-            box-shadow: none !important;
+        .model-card.expanded {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18) !important;
             transform: translateY(-4px) scale(1.03);
             z-index: 2;
             height: 410px;
+            transition: height 0.4s cubic-bezier(.4,2,.6,1), box-shadow 0.3s, transform 0.3s;
         }
         .model-card model-viewer {
             width: 100%;
@@ -749,9 +787,11 @@ body.dark-mode .product-link {
             .dimensions-block {
                 padding: 5px;
                 margin-bottom: 10px;
+                text-align: center;
             }
             .dimensions-title {
                 font-size: 13px;
+                text-align: center;
             }
             .dimensions-labels {
                 font-size: 11px;
@@ -1006,21 +1046,21 @@ body.dark-mode .product-link {
         </div>
     </div>
     
-    <h1>CATÁLOGO 3D | TESTA CHILE</h1>
+    <h1>Catálogo 3D de Exhibidores y Stands Personalizados, Testa Chile</h1>
     
     <div class="description">
         <div class="desc-col">
-            <p><i class="fas fa-cube"></i>Explora nuestro <strong>Catálogo 3D</strong> interactivo.</p>
-            <p><i class="fas fa-eye"></i>Descubre trabajos realizados para nuestros clientes.</p>
-            <p class="desktop-only"><i class="fas fa-mouse-pointer"></i>Pasa el mouse sobre cada modelo para más información.</p>
-            <p class="mobile-only"><i class="fas fa-hand-pointer"></i>Tocap cada modelo 3D para verlo rotar.</p>
+            <p><i class="fas fa-cube"></i>Explora nuestro <strong>Catálogo 3D</strong> interactivo</p>
+            <p><i class="fas fa-eye"></i>Descubre trabajos realizados para nuestros clientes</p>
+            <p class="desktop-only"><i class="fas fa-mouse-pointer"></i><strong>Haz click sobre cada modelo</strong> para más información</p>
+            <p class="mobile-only"><i class="fas fa-hand-pointer"></i>Toca cada modelo 3D para verlo rotar</p>
         </div>
         <div class="desc-col">
-            <p><i class="fas fa-cogs icon-highlight"></i>Productos <strong>PERSONALIZADOS</strong> y <strong>A LA MEDIDA</strong>.</p>
-            <p><i class="fas fa-shopping-cart icon-success"></i>Ventas al detalle y por mayor.</p>
-            <p><i class="fas fa-credit-card"></i>Medio de pago: Transferencia electrónica.</p>
-            <p><i class="fas fa-receipt"></i>Contamos con boleta y factura.</p>
-            <p><i class="fas fa-map-marker-alt"></i>Próximamente Taller en Santiago, Chile.</p>
+            <p><i class="fas fa-cogs icon-highlight"></i>Productos <strong>PERSONALIZADOS</strong> y <strong>A LA MEDIDA</strong></p>
+            <p><i class="fas fa-shopping-cart icon-success"></i>Ventas <strong>al detalle y por mayor</strong></p>
+            <p><i class="fas fa-credit-card"></i>Medio de pago: Transferencia electrónica</p>
+            <p><i class="fas fa-receipt"></i>Contamos con boleta y factura</p>
+            <p><i class="fas fa-map-marker-alt"></i><strong><a href="https://maps.app.goo.gl/RacbfhUiK4hLvVz7A" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Próximamente:</a></strong> Taller en Santiago, RM, Chile</p>
         </div>
     </div>
     
@@ -1039,6 +1079,38 @@ body.dark-mode .product-link {
     
     <!-- Contenedor del catálogo (Flexbox) -->
     <div class="catalog-flex" id="catalog-flex"></div>
+    <style>
+        .catalog-flex {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto 20px auto;
+        }
+        .catalog-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1 1 0;
+            min-width: 250px;
+        }
+        @media (max-width: 1023px) {
+            .catalog-flex {
+                flex-direction: column !important;
+                gap: 15px !important;
+                padding: 0 5px !important;
+            }
+            .catalog-column {
+                flex-direction: column !important;
+                gap: 15px !important;
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+        }
+    </style>
     
     <!-- Footer -->
     <div class="footer">Testa Chile 2025 <br><br>
@@ -1441,7 +1513,6 @@ body.dark-mode .product-link {
                     camera-orbit="45deg 60deg 2.5m"
                     ar
                     ar-modes="webxr scene-viewer quick-look"
-                    camera-controls
                     shadow-intensity="2"
                     shadow-softness="1.2"
                     environment-image="environments/studio_country_hall_2k.hdr"
@@ -1449,6 +1520,8 @@ body.dark-mode .product-link {
                     xr-environment
                     loading="${idx < PRIORITY_MODELS ? 'eager' : 'lazy'}"
                     auto-rotate-delay="0"
+                    disable-zoom
+                    disable-pan
                 >
                     <button slot="ar-button" class="ar-button">
                         AR
@@ -1459,16 +1532,41 @@ body.dark-mode .product-link {
 
             // Solo mostrar la descripción al hacer hover (desktop)
             if (window.innerWidth > 1023) {
-                card.addEventListener('mouseenter', () => {
-                    card.classList.add('expanded');
-                    if (!card.querySelector('.floating-description')) {
-                        card.insertAdjacentHTML('beforeend', floatingHtml);
+                // En desktop, expansión por click
+                card.addEventListener('click', (e) => {
+                    const viewer = card.querySelector('model-viewer');
+                    // Si ya está expandida, contraerla y detener rotación
+                    if (card.classList.contains('expanded')) {
+                        card.classList.remove('expanded');
+                        const desc = card.querySelector('.floating-description');
+                        if (desc) desc.remove();
+                        if (viewer) {
+                            viewer.removeAttribute('auto-rotate');
+                            viewer.removeAttribute('rotation-per-second');
+                        }
+                    } else {
+                        // Contraer otras cards expandidas y detener su rotación
+                        document.querySelectorAll('.model-card.expanded').forEach(otherCard => {
+                            if (otherCard !== card) {
+                                otherCard.classList.remove('expanded');
+                                const desc = otherCard.querySelector('.floating-description');
+                                if (desc) desc.remove();
+                                const otherViewer = otherCard.querySelector('model-viewer');
+                                if (otherViewer) {
+                                    otherViewer.removeAttribute('auto-rotate');
+                                    otherViewer.removeAttribute('rotation-per-second');
+                                }
+                            }
+                        });
+                        card.classList.add('expanded');
+                        if (!card.querySelector('.floating-description')) {
+                            card.insertAdjacentHTML('beforeend', floatingHtml);
+                        }
+                        if (viewer) {
+                            viewer.setAttribute('auto-rotate', '');
+                            viewer.setAttribute('rotation-per-second', '90deg');
+                        }
                     }
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.classList.remove('expanded');
-                    const desc = card.querySelector('.floating-description');
-                    if (desc) desc.remove();
                 });
             } else {
                 // En móvil, siempre visible
@@ -1520,38 +1618,7 @@ body.dark-mode .product-link {
             const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
             
             if (window.innerWidth > 1023) {
-                // Solo en desktop (>1023px) permitir expansión
-                if (isTouchDevice) {
-                    // En tablets grandes táctiles, usar tap para expandir/contraer
-                    card.addEventListener('touchstart', (e) => {
-                        e.preventDefault();
-                        if (card.classList.contains('expanded')) {
-                            card.classList.remove('expanded');
-                        } else {
-                            // Contraer otras cards expandidas
-                            document.querySelectorAll('.model-card.expanded').forEach(otherCard => {
-                                if (otherCard !== card) otherCard.classList.remove('expanded');
-                            });
-                            card.classList.add('expanded');
-                            setTimeout(() => scrollCardIntoViewIfLast(card), 300);
-                        }
-                    });
-                } else {
-                    // Comportamiento original para desktop
-                    card.addEventListener('mouseenter', () => {
-                        card.classList.add('expanded');
-                        setTimeout(() => scrollCardIntoViewIfLast(card), 200);
-                    });
-                    card.addEventListener('mouseleave', () => card.classList.remove('expanded'));
-                }
-                
-                card.addEventListener('focusin', () => {
-                    card.classList.add('expanded');
-                    setTimeout(() => scrollCardIntoViewIfLast(card), 200);
-                });
-                card.addEventListener('focusout', () => {
-                    card.classList.remove('expanded');
-                });
+                // Solo en desktop (>1023px) permitir expansión por click (ya implementado arriba)
             }
             // En móviles/tablets (<=1023px), no agregar eventos de expansión porque la info está siempre visible
 
@@ -1559,33 +1626,7 @@ body.dark-mode .product-link {
             const viewerElement = card.querySelector('model-viewer');
             
             if (isTouchDevice) {
-                // En móviles, rotar al tocar el modelo directamente
-                viewerElement.addEventListener('touchstart', (e) => {
-                    // No prevenir el evento para permitir interacción con el modelo
-                    if (viewerElement.loaded && !viewerElement.hasAttribute('auto-rotate')) {
-                        viewerElement.setAttribute('auto-rotate', '');
-                        viewerElement.setAttribute('rotation-per-second', '60deg');
-                        
-                        // Parar rotación después de 3 segundos
-                        setTimeout(() => {
-                            viewerElement.removeAttribute('auto-rotate');
-                            viewerElement.removeAttribute('rotation-per-second');
-                        }, 3000);
-                    }
-                });
-            } else {
-                // Comportamiento original para desktop
-                viewerElement.addEventListener('mouseenter', () => {
-                    if (viewerElement.loaded) {
-                        viewerElement.setAttribute('auto-rotate', '');
-                        viewerElement.setAttribute('rotation-per-second', '90deg');
-                    }
-                });
-                viewerElement.addEventListener('mouseleave', () => {
-                    viewerElement.removeAttribute('auto-rotate');
-                    viewerElement.removeAttribute('rotation-per-second');
-                    viewerElement.cameraOrbit = "45deg 60deg 2.5m";
-                });
+                // En móviles, no rotar automáticamente al tocar, solo al expandir (ya manejado por el click/tap de la Card)
             }
 
             // Distribución por filas: llenar de izquierda a derecha, fila por fila
