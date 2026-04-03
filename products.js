@@ -38,7 +38,7 @@ const realProducts = [
 
 // 🖼️ PRODUCTOS PLACEHOLDER
 // Se generan automáticamente para rellenar el mosaico
-const placeholderCount = 0; // Cambiado a 0 para mostrar solo productos reales
+const placeholderCount = 30; // Cambiado a 0 para mostrar solo productos reales
 const placeholderProducts = Array.from({ length: placeholderCount }, (_, i) => ({
     id: `placeholder-${i + 1}`,
     name: `Producto ${i + 1}`,
