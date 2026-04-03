@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testa Chile - Catálogo de Productos</title>
+    <title>Andi Works</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <!-- Model Viewer para logo 3D -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body>
-    <!-- Logo 3D fijo -->
-    <!-- LOGO 3D GIRATORIO -->
+    <!-- Logo 3D GIRATORIO-->
     <div class="logo-3d-container">
       <model-viewer 
         src="assets/logotesta.glb"
         alt="Logo 3D"
         auto-rotate
-        rotation-per-second="45deg"
+        rotation-per-second="90deg"
         camera-orbit="0deg 90deg 105%"
         field-of-view="1deg"
         min-field-of-view="1deg"
@@ -41,19 +40,27 @@
             <a href="https://instagram.com/tuusuario" target="_blank" class="social-btn instagram-btn">Instagram</a>
         </div>
         <div class="social-btn-container">
+            <span class="social-tooltip">Dame tu like en Facebook</span>
+            <a href="https://www.facebook.com/share/1DNDcqQfjD/?mibextid=wwXIfr" target="_blank" class="social-btn facebook-btn">Facebook</a>
+        </div>
+        <div class="social-btn-container">
             <span class="social-tooltip">¡Encuéntranos en el mapa!</span>
-            <a href="https://maps.google.com" target="_blank" class="social-btn location-btn">Ubicación</a>
+            <a href="https://share.google/3XhUanC5lmZirOd8A" target="_blank" class="social-btn location-btn">Ubicación</a>
         </div>
     </div>
 
     <header>
-        <h1>Testa Chile - Catálogo de Productos</h1>
+        <h1><strong>Andi Works |</strong> trabajos y productos</h1>
     </header>
     <main>
         <div id="mosaic-container" class="mosaic">
             <!-- Cards se generarán dinámicamente con JS -->
         </div>
     </main>
+
+    <footer>
+        Desarrollado por Andrés Baeza 2025-2026
+    </footer>
 
     <!-- Overlay para vista ampliada -->
     <div id="overlay" class="overlay">

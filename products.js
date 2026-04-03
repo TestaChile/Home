@@ -30,14 +30,15 @@ const realProducts = [
         contact: {
             instagram: 'https://instagram.com/tuusuario',
             whatsapp: 'https://wa.me/1234567890'
-        }
+        },
+        feedback: 'Un producto de increíble calidad y fabricado tal cual como queríamos'
     }
     // 📌 Agrega más productos reales aquí siguiendo el mismo formato
 ];
 
 // 🖼️ PRODUCTOS PLACEHOLDER
 // Se generan automáticamente para rellenar el mosaico
-const placeholderCount = 20 - realProducts.length; // Ajusta el total deseado
+const placeholderCount = 0; // Cambiado a 0 para mostrar solo productos reales
 const placeholderProducts = Array.from({ length: placeholderCount }, (_, i) => ({
     id: `placeholder-${i + 1}`,
     name: `Producto ${i + 1}`,
@@ -63,7 +64,8 @@ const placeholderProducts = Array.from({ length: placeholderCount }, (_, i) => (
     contact: {
         instagram: 'https://instagram.com/tuusuario',
         whatsapp: 'https://wa.me/1234567890'
-    }
+    },
+    feedback: i % 5 === 0 ? 'Un producto de increíble calidad y fabricado tal cual como queríamos' : undefined
 }));
 
 // 📦 COMBINAR TODOS LOS PRODUCTOS

@@ -27,6 +27,7 @@ function generateMosaic() {
         card.setAttribute('data-product-name', product.name);
         card.innerHTML = `
             <img src="${product.images[0]}" alt="${product.name}">
+            ${product.feedback ? `<span class="feedback-tooltip"><svg class="feedback-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M12 14c-6.1 0-8 4-8 4v2h16v-2s-1.9-4-8-4z"/></svg> "<em>${product.feedback}</em>"</span>` : ''}
             <div class="quick-quote-btn" data-product="${product.name}">
                 <img src="icons/whatsapp-icon.svg" alt="Cotizar">
                 <span class="quote-tooltip">cotiza aquí</span>
@@ -203,6 +204,25 @@ function openOverlay(index) {
         }, 400); // ⏱️ DELAY antes de que aparezca (en ms)
     }
 
+    // �💬 CONFIGURAR MENSAJE DE FEEDBACK
+    // Remover mensaje anterior si existe
+    const existingFeedback = document.querySelector('.feedback-message');
+    if (existingFeedback) existingFeedback.remove();
+    
+    // Crear mensaje de feedback si existe
+    if (product.feedback) {
+        const overlayContent = document.querySelector('.overlay-content');
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.className = 'feedback-message';
+        feedbackDiv.innerHTML = `<svg class="feedback-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M12 14c-6.1 0-8 4-8 4v2h16v-2s-1.9-4-8-4z"/></svg> "<em>${product.feedback}</em>"<div class="feedback-label">Feedback</div>`;
+        overlayContent.appendChild(feedbackDiv);
+        
+        // 🎬 ANIMAR ENTRADA del mensaje con delay
+        setTimeout(() => {
+            feedbackDiv.classList.add('visible');
+        }, 400); // ⏱️ MISMO DELAY que el panel de specs
+    }
+
     // Mostrar overlay con animación
     overlay.style.display = 'flex';
     anime({
@@ -296,6 +316,10 @@ function closeOverlay(e) {
         
         // 🎬 OCULTAR PANEL DE ESPECIFICACIONES primero
         specsPanel.classList.remove('visible');
+        
+        // Remover mensaje de feedback
+        const feedbackDiv = document.querySelector('.feedback-message');
+        if (feedbackDiv) feedbackDiv.remove();
         
         anime({
             targets: overlay,
